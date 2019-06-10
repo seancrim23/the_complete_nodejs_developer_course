@@ -1,0 +1,13 @@
+*************************************************************************************************
+node js module system (notes app)																*
+*************************************************************************************************
+
+-importing a module	
+	- const varName = require('module_name');
+	
+-exporting a value/values/functions/etc from a module:
+	- module.exports = { whatever_you_are_exporting };
+	
+- NPM steps, pretty straightforward but good to remember just in case
+
+	- need to "npm init" before installing any npm libraries
