@@ -1,0 +1,33 @@
+*************************************************************************************************
+Installing and exploring nodejs																	*
+*************************************************************************************************
+
+OFFICIAL NODEJS DEFINITION/BLURB FROM WEBSITE:
+
+	"Node.js is a Javascript runtime built on Chrome's V8 JavaScript engine. Node.js uses an event-driven,
+	non-blocking I/O model that makes it lightweight and efficient. Node.js' package ecosystem, npm, is the largest
+	ecosystem of open source libraries in the world."
+
+- WHAT IS NODEJS???????
+
+	- developers can use javascript now on the server side, rather than just on the front end.
+	- v8 (c++) engine allows browsers, node to run, it translates code to vanilla javascript for the machine to run
+		- essentially vanilla javascript has no idea how to do certain things (reading a file for example). this is why node passes this off to the
+		v8 engine which then translates that code into c++ which can do what vanilla javascript cannot.
+	
+- SPECIFIC KEYWORDS/DIFFERENCES BETWEEN NODE AND VANILLA JS
+
+	  - javascript "window" vs nodejs "global"
+	  - javascript "document" vs nodejs "process"
+	  
+- WHY SHOULD WE USE NODEJS????????????????
+
+	- non blocking i/o 
+		- "non-blocking" - (asynchronous) while waiting for a response from some call, it can still do other things
+		- uses this anytime it is trying to communicate with the outside world
+			ex: querying a db, reading from a file system, making requests, etc
+	-NPM!!! huge ecosystem containing open source libraries that can be used in node programs.
+
+
+
+	
