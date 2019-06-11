@@ -15,6 +15,7 @@ fs.writeFileSync('random.txt', 'this file was created by node.js');
 const utils = require('./utils.js');
 const getNotes = require('./notes.js');
 const validator = require('validator');
+const chalk = require('chalk');
 
 //const name = 'sean';
 console.log(utils.name);
@@ -32,3 +33,15 @@ console.log(utils.add(2, 3));
  console.log(getNotes());
 
  console.log(validator.isEmail('theseancrim@gmail.com'));
+
+
+ /**
+  * challenge: use the chalk library in your project
+  * 
+  * 1. install version 2.4.1 of chalk
+  * 2. load chalk into app.js
+  * 3. use it to print "Success!" to console in green
+  * 4. test your work
+  */
+
+  console.log(chalk.green.bgRed.bold('Woah Nodemon is cool!'));

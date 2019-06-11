@@ -11,3 +11,8 @@ node js module system (notes app)																*
 - NPM steps, pretty straightforward but good to remember just in case
 
 	- need to "npm init" before installing any npm libraries
+	
+- local/global npm packages
+
+	- local: installed into the local project itself to be used by the project (listed in package.json)
+	- global: installing the package to the operating system itself

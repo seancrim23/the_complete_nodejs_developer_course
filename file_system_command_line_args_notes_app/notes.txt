@@ -1,0 +1,45 @@
+*************************************************************************************************
+file system/command line args(notes app)  									                    *
+*************************************************************************************************
+
+- making use of "process"
+
+	- can use process.argv to access all of the arguments that are passed to the command line
+		- can reference each argument as an array using brackets []
+		
+- creating commands with "yargs"
+
+	- simple as yargs.command
+		- all that you have to pass to the command is an object with specific variables that basically
+		will tell the command what to do and give it description
+		
+	- adding an option - basically an argument that you pass to the command that you can predefine
+		- ex: yargs.command({
+			...,
+			builder: {
+				title: {
+					describe: 'note title',
+					demandOption: true,
+					type: 'string'
+				}
+			},
+			...
+		}); //This creates an option inside of the command we created that requires we pass it an
+		//argument called "title" that is required to have a string value.
+		
+- array "filter" function:
+
+	- similar to "foreach". array_name.filter(callback());
+		- function goes through each element of the array and returns whatever matches the specified condition.
+			ex. const filteredTitleArray = notes.filter(note => {
+				return note.title !== title; 
+			});
+			- This returns anything to the array where the title in the array DOES NOT match the title passed in. purpose: to filter out the
+			title for a "remove" function.
+
+- array "find" function: 
+
+	- similar to foreach, filter, etc. except this function will break as soon as it finds its one predefined match
+		- ex. array_name.find(object => object.something === something);
+			- this will return the current object of the array and break out of the loop as soon as the
+			"object.something === something" condition is met
