@@ -1,0 +1,9 @@
+*************************************************************************************************
+async node js (weather app) 									                    			*
+*************************************************************************************************
+
+- always keep in mind the way javascript parses code, especially when asynchronous calls happen.
+	-ex. parse/execution order when code has a few lines of async
+	
+	https://mapbox.com/geocoding/v5/mapbox.places/Los Angeles.json?access_token=pk.eyJ1IjoiY29vbHNlYW40MiIsImEiOiJjand0b3Q2angyanA4NDNxbXZrODMyMjU4In0.y-8FVtdcJnFeR1KPsCcW0A
+ 

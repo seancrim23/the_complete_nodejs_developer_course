@@ -1,0 +1,78 @@
+*************************************************************************************************
+web servers(weather app) 									                    			    *
+*************************************************************************************************
+
+CAN SERVE UP JSON DATA WITH EXPRESS!! YAYY!!!
+
+- ROUTING WITH EXPRESS
+
+	-very easy
+		- set up one on the root
+			- app.get('', (req,res) => {
+				res.send('message!');
+			});
+		-set up one on anything else
+			- app.get('/something/...', (req,res) => {
+				...
+			}); 
+			
+			- you can serve up HTML/JSON with these!!! serve up entire pages and whatnot!!!
+			
+- serving up a static page using "app.use(express.static())"
+
+	- pass in a static path to determine what to display
+		- app.use(express.static(direct_path_to_static_page));
+			- we can use this to setup a default html page.
+			
+-!!!TEMPLATING!!! very important (can use "handlebars")
+
+	-have to use "app.set" to specify the library we will plug into express to create templates
+		-with handlebars: app.set('view engine', 'hbs');
+
+	- essentially creating HTML skeletons that can be filled with data
+		- these skeletons are then served up to the user when the user hits different routes
+		
+	-allows us to create a dynamic page(s)!!! based on a pull from an API (of which the data can change) or
+	input from the user, we can use the same page to display any data rather than a static page that will never change
+	
+	- USING "render"
+		-render will be the function that is used to load dynamic template pages from the "views" folder
+			-ex. app.get('route_path', (req, res) => {
+					res.render('route_name');
+			});
+			
+			- CAN ALSO PASS DATA TO RENDER!!!
+				-ex: app.get('route_path', (req, res) => {
+					res.render('route_name', {
+						title: 'Weather App',
+						name: 'Sean Crim'
+					});
+				});
+				
+	-CUSTOMIZING HANDLEBARS!!! (location and name of "views" directory)
+		- just ends up being another property that gets added through handlebars
+			- ex. app.set('views', path_to_views_directory) 
+				//essentially pointing handlebars to this directory
+				to look for whatever views you want (not sure if there's really a reason to change this tbh since views/templates
+				seems to be a good naming convention)
+				
+-creating "PARTIALS" aka bits of code that will be static on every page (like a header or footer for example)
+
+	- need to register directly with handlebars (hbs.registerPartials(path_to_partials)) so it knows where to look
+	
+	-easily reference these in the templates by using the {{}} handlebars standard and pass in ">partial_name"
+	
+- handling "404" errors
+	
+	- very simple. essentially, you will just create a sort of "default" route statement
+		- basically what you want to say is, for anything else that i havent already set a route for, give me the 
+		404 error page
+		-ex. app.get('*', (req, res) => {
+				res.send('my 404 page :)');
+			});
+			-"*" serves as a wildcard meaning anything that hasnt already been defined will return this message
+				-NOTE: HAS TO BE DEFINED AT THE END!!! if you run at the beginning then handlebars will think that 
+				every single route should go to the 404. set up your main routes FIRST, THEN set up the default 404 route
+		
+		
+		
