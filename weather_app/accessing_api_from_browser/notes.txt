@@ -1,0 +1,19 @@
+*************************************************************************************************
+accessing api from browser(weather app) 									                    			    *
+*************************************************************************************************
+
+- HOW TO PASS IN THE VALUES FROM THE BROWSER
+
+	-basically how do we determine what data we'll pull based on what we pass to the URL
+		ex. random.com/users/1, random.com/object/2, random.com/something/123
+		or random.com/something?something=something
+		
+	-we can access the values that get passed by making use of the "request" object from app.get
+		- simple as accessing it like json "req.query.Whatever_the_data_name_is"
+
+- a bit of an aside:
+	
+	- using node will set up the endpoints that will be accessed by the vanilla client javascript
+		- in other tutorials we used fetch with endpoints from public apis, but for this tutorial
+		we were able to set up our own endpoints that we could use on the client side to pull data
+		

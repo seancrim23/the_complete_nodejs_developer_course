@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const hbs = require('hbs');
+const geocode = require('./utils/geocode');
+const forecast = require('./utils/forecast');
 
 const app = express();
 
@@ -53,12 +55,58 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/weather', (req, res) => {
-    res.send({
-        forecast: 'cloudy',
-        location: 'Delaware',
-        title: 'Weather Page'
-    });
+    if(!req.query.address){
+        return res.send({
+            error: 'Error! Please provide an address!'
+        });
+    }
+
+        //console.log(req.query.address);
+        geocode(req.query.address, (error, {latitude, longitude, location} = {}) => {
+            if(error){
+                return res.send({ error });
+            }
+            forecast(latitude, longitude, (error, { forecastData }) => {
+                if(error){
+                    return res.send({ error });
+                }
+
+                res.send({
+                    location,
+                    forecastData
+                });
+            });
+
+        });
 });
+
+/*app.get('/products', (req, res) => {
+    if(!req.query.address){
+        res.send({
+            error: 'Error! Please provide an address!'
+        });
+    } else {
+        console.log(req.query.address);
+        geocode(req.query.address, (error, {latitude, longitude, location}) => {
+            if(error){
+                console.error('Error!', error);
+            }
+            forecast(latitude, longitude, (error, {temperature, chanceRain}) => {
+                if(error){
+                    console.error('Error!', error);
+                }
+
+                res.send({
+                    location,
+                    temperature,
+                    chanceRain,
+                    forecast: `It is currently ${temperature} degrees out. There is a ${chanceRain}% chance of rain.`
+                });
+            });
+
+        });
+    }   
+});*/
 
 app.get('/help/*', (req, res) => {
     res.render('404', {
@@ -125,3 +173,21 @@ app.listen(3000, () => {
    *    - help article not found
    * 4. test
    */
+
+  /**
+   *goal6: update weather endpoint to accept address
+   
+   1. No address? send back error message
+   2. address? send back static json
+        -add address property onto JSON which returns the provided address
+    3. test
+   */
+
+   /**
+    * goal7: wire up /weather
+    *  
+    * 1. require geocode/forecast into app.js
+    * 2. use address to geocode
+    * 3. use coordinates to get forecast
+    * 4. send back forecast and location
+    */
