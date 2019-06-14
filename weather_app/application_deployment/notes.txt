@@ -3,3 +3,5 @@ application deployment(weather app) 									                    	*
 *************************************************************************************************
 
 -can use Github and Heroku to deploy!
+
+	- GO THROUGH HEROKU TUTORIAL!!!
