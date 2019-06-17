@@ -1,0 +1,37 @@
+*************************************************************************************************
+advanced node topics (task app)								                    				*
+*************************************************************************************************
+
+-MongoDB
+	-NOSQL
+	
+	- very easy to insert/connect/etc
+		-essentially all you have to do is provide the connection details to initialize the client and
+		then you can use that along with helper functions to interact with the database.
+	
+	-mongodb has rich documentation
+	
+-Promise diagram (review)
+
+							fulfilled
+							/
+	- PROMISE -- pending -->
+							\
+							rejected
+						
+						
+- MONGOOSE js library
+	
+	- essentially a library built on top of MongoDB that streamlines the process of making db calls.
+		- object based. you can define a new object and then easily use that object to interact with the db
+		as desired.
+		
+	- define a model -> create an object (based on the model) -> save/etc. the object
+	
+- STRUCTURE OF HTTP REQUEST:
+
+	- 3 main pieces
+	
+		- request line: contains http method, the path, and the http protocol
+		- request headers: nothing more than key value pairs that allow you to attach info to the request
+		- request body: data provided to the request
