@@ -35,3 +35,46 @@ advanced node topics (task app)								                    				*
 		- request line: contains http method, the path, and the http protocol
 		- request headers: nothing more than key value pairs that allow you to attach info to the request
 		- request body: data provided to the request
+		
+- basic algorithm for setting up endpoint
+
+	- define an express application (const app = express();)
+		- on this "app" express app, define routers (app.post(...), app.get(...), app.etc(...)) 
+		These will have the url route itself set up and define what happens when that endpoint is hit
+			ex. app.get('/tasks', async (req, res) => {
+
+					try{
+						const tasks = await Task.find({});
+						res.send(tasks);
+					}catch(e){
+						res.status(500).send(e);
+					}
+
+				});
+				
+				- this route will run when the localhost:port_num/tasks endpoint is hit with a GET request, and will either return
+				the array of all of the tasks from the database or will return an error on failure
+		
+- passing in values to definition of API endpoints
+	
+	-very simple, in the request definition, simply add ":parameter_name" to the endpoint.
+		-ex. app.get('/something/:id'...) this will allow you to pass a value for the "id" parameter into the request
+			- it can then be accessed on the request object that gets populated in the callback function
+			
+- PROMISE CHAINING
+	
+	-method of making multiple promise calls more concise
+	
+		ex: add(1, 2).then(sum => {
+				console.log(sum);
+				return add(sum, 19);
+			}).then(sum2 => {
+				console.log(sum2);
+			}).catch(error => {
+				console.log(error);
+			});
+			- in returning the second "add" function, we become able to add the second "then"
+			that can handle the response from the add function call that gets returned. we can continue
+			chaining these for as long as needed (although i don't personally see a reason to do this
+			for readability sake)
+			

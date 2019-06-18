@@ -2,31 +2,10 @@ const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', {
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useFindAndModify: false
 });
 
-const Task = mongoose.model('Task', {
-    description: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    completed: {
-        type: Boolean,
-        default: false
-    }
-});
-
-/*const task = new Task({
-    description: 'take a bath',
-    completed: true
-});
-
-task.save().then(result => {
-    console.log('Success!', result);
-}).catch(error => {
-    console.log('Error!', error);
-});*/
 /**
  * goal: create model for tasks
  * 
