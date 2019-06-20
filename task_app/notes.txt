@@ -78,3 +78,58 @@ advanced node topics (task app)								                    				*
 			chaining these for as long as needed (although i don't personally see a reason to do this
 			for readability sake)
 			
+- Securely storing a user's password with "bcryptjs"
+
+	-bcrypt includes a hash function that can be used to encrypt passwords
+		- according to the instructor, 8 rounds of the algorithm is the sweet spot.
+		
+	-bcyrpt also contains a comparison function that will return true/false if the password matches the hash
+
+- Making use of Mongoose Schemas
+	
+	- these can allow for actions to occur on specific triggers:
+		ex. userSchema.pre('save', async function (next) {
+				const user = this;
+
+				if (user.isModified('password')) {
+					user.password = await bcrypt.hash(user.password, 8);
+				}
+
+				next();
+			});
+			- when a "save" operation occurs for any object that falls under the "user" schema
+			this code will fire off and will hash the password that is submit by the user to secure it in the 
+			database. can use this many other ways as needed
+			
+- Integrating the "jsonwebtoken" library
+
+	- used so when a user creates a new account, they should not have to enter their credentials again in order to log in
+	
+-Difference between schema "statics" and schema "methods"
+
+	- STATICS are accessible on the MODEL
+		- if we have a User model, we can use User.static_function
+	- METHODS are accesible on the INSTANCE
+		- if we have an instance of User model called user, we can use user.method
+		
+- creating Express middleware
+
+	-allows us to customize our server to fit our needs
+	
+		- ex: app.use((req, res, next) => {
+				res.status(503).send('Site is currently down. Please check back later!');
+			});
+				- this function will be able to intercept any requests made and return the maintenance response. also
+				users will not be able to complete any of these requests as we are not making use of "next()"
+				
+-Authentication logic
+
+	- must define an authentication function.
+		
+		-this function can be passed into our routers to provide a sort of filter.
+			-you must define headers that will hold the authorization tokens.
+			
+				- pass the token to the auth -> verify the token (using unique signature) -> find the user/data that has that decoded token
+				
+					
+			

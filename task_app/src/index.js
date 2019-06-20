@@ -1,21 +1,49 @@
 const express = require('express');
 require('./db/mongoose');
-const User = require('./models/user');
-const Task = require('./models/task');
 const userRouter = require('./routers/user');
 const taskRouter = require('./routers/task');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+/*app.use((req, res, next) => {
+    if(req.method === 'GET'){
+        res.send('GET requests are disabled!');
+    } else {
+        next();
+    }
+});*/
+
+/*app.use((req, res, next) => {
+    res.status(503).send('Site is currently down. Please check back later!');
+});*/
 
 app.use(express.json());
 app.use(userRouter);
 app.use(taskRouter);
 
+/**
+ * without middleware: new request -> run route handler
+ * 
+ * with middleware: new request -> do something -> run route handler
+ * 
+ */
+
 app.listen(port, () => {
     console.log('Server is up on port ' + port);
 });
 
+/*const myFunction = async () => {
+    const token = jwt.sign({ _id: 'abc123' }, 'thisissupercooltoken', { expiresIn: '7 seconds' });
+    console.log(token);
+
+    const data = jwt.verify(token, 'thisissupercooltoken');
+    console.log(data);
+};
+
+myFunction();*/
 /**
  * goal1: setup task create endpoint
  * 
@@ -68,3 +96,11 @@ app.listen(port, () => {
     * 3. load in and use router w express app
     * 4. test
     */
+
+    /**
+     * goal6: setup middleware for maintenance mode
+     * 
+     * 1. register a new middleware function
+     * 2. send back a maintenance message with 503 status code
+     * 3. try your requests from the server and confirm status
+     */
