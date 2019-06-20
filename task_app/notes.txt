@@ -131,5 +131,10 @@ advanced node topics (task app)								                    				*
 			
 				- pass the token to the auth -> verify the token (using unique signature) -> find the user/data that has that decoded token
 				
-					
+			
+- Error handler logic (for file uploads)
+				
+		- errors will get returned by routes on error. we can define the messages that are sent back to make them meaningful
+			- when we define the route, we can pass a second callback function that can contain the error object (if there is an error)
+				-on error we simply return whatever the error message that was returned that was defined in the model object
 			

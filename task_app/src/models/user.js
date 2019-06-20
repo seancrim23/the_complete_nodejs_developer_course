@@ -30,6 +30,9 @@ const userSchema = new mongoose.Schema({
             }
         }
     },
+    avatar: {
+        type: Buffer,
+    },
     password: {
         type: String,
         trim: true,
@@ -48,6 +51,14 @@ const userSchema = new mongoose.Schema({
             required: true
         }
     }]
+}, {
+    timestamps: true
+});
+
+userSchema.virtual('tasks', {
+    ref: 'Task',
+    localField: '_id',
+    foreignField: 'owner'
 });
 
 userSchema.methods.generateAuthToken = async function() {
@@ -59,6 +70,17 @@ userSchema.methods.generateAuthToken = async function() {
 
     return token;
 };
+
+userSchema.methods.toJSON = function() {
+    const user = this;
+    const userObject = user.toObject();
+
+    delete userObject.password;
+    delete userObject.tokens;
+    delete userObject.avatar;
+
+    return userObject;
+};  
 
 userSchema.statics.findByCredentials = async (email, password) => {
     const user = await User.findOne({ email });
@@ -83,6 +105,15 @@ userSchema.pre('save', async function (next) {
     if (user.isModified('password')) {
         user.password = await bcrypt.hash(user.password, 8);
     }
+
+    next();
+});
+
+//delete user tasks when user is removed
+userSchema.pre('remove', async function (next) {
+    const user = this;
+
+    await Task.deleteMany({ owner: user._id });
 
     next();
 });
