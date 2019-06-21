@@ -138,3 +138,17 @@ advanced node topics (task app)								                    				*
 			- when we define the route, we can pass a second callback function that can contain the error object (if there is an error)
 				-on error we simply return whatever the error message that was returned that was defined in the model object
 			
+- using Environment Variables
+
+	- define an environment file
+	
+		- download some sort of tool that allows us to point to that environment file on startup (env-cmd in our case)
+		
+			- replace the static references to environment properties with process.env.PROPERTY_KEY to use the value of that property.
+			
+	- allows us to increase security and also makes it easier to update our code.
+		- rather than having to replace a static string 100 times we can upgrade it 1 time to update 100 uses
+
+-libraries for testing NodeJS
+
+	- Mocha, Jest
