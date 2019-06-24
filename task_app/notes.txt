@@ -151,4 +151,12 @@ advanced node topics (task app)								                    				*
 
 -libraries for testing NodeJS
 
-	- Mocha, Jest
+	- Mocha, Jest (lots of rich docs for Jest)
+	
+		- need to add a "done" parameter to any test that includes an asynchronous operation
+		
+-Setting up and tearing down for NodeJS testing
+
+	- can invoke "before" and "after" functions (beforeEach() and afterEach() for example)
+		-use these to set up and tear down tests before and after the test runs. Need to make sure there is no remaining information generated from the tests that can compromise
+		future tests.

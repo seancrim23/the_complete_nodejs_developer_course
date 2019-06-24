@@ -1,9 +1,14 @@
-const app = require('./app');
+const express = require('express');
+require('./db/mongoose');
+const userRouter = require('./routers/user');
+const taskRouter = require('./routers/task');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
-//const app = express();
+const app = express();
 const port = process.env.PORT || 3000;
 
-/*const multer = require('multer');
+const multer = require('multer');
 const upload = multer({
     dest: 'images',
     limits: {
@@ -37,7 +42,7 @@ app.post('/upload', upload.single('upload'), (req, res) => {
     res.status(503).send('Site is currently down. Please check back later!');
 });*/
 
-/*app.use(express.json());
+app.use(express.json());
 app.use(userRouter);
 app.use(taskRouter);
 
@@ -63,9 +68,7 @@ const main = async () => {
 
 main();*/
 
-app.listen(port, () => {
-    console.log('Server is up on port ' + port);
-});
+module.exports = app;
 
 
 
