@@ -1,0 +1,18 @@
+*************************************************************************************************
+advanced node topics (chat app)								                    				*
+*************************************************************************************************
+
+- essentially a large network of event listeners.... the server is waiting for the client to do something and vice versa. When either do something, then something will happen and the
+	response will be sent to the other.
+
+- Difference between the "io" connection and the "socket" connection
+
+	- io - related to the ENTIRE SERVER. this can send messages/etc to anybody connected to the server
+	- socket - related to the connection of ONE client, only can send/receive from that ONE client
+	
+- socket "broadcast" will send the data to EVERY CONNECTION EXCEPT for the singular user
+
+- Event Acknowledgements 
+
+	- exactly what they sound like, server sends the client an event and the client sends a message back to the server ACKNOWLEDGING it has been received
+		(and vice versa)
