@@ -16,3 +16,34 @@ advanced node topics (chat app)								                    				*
 
 	- exactly what they sound like, server sends the client an event and the client sends a message back to the server ACKNOWLEDGING it has been received
 		(and vice versa)
+		
+-Linking together server with client.
+
+	- (in my own words) - essentially the server and client are linked through emissions and waiting (on)
+		- one side can "emit" some action that is based on a word (first param for emit) and the other side can wait (with "on") to figure
+		out what to do when that action occurs
+			ex. client wants to tell server about a new user
+				socket.emit('newUser', userInfo, message (this message will come from the callback acknowledging the event happened)); - emitting "newUser" with the data about the user and waiting for something to handle it (the server)
+				
+				now the server will wait with a piece of code like so:
+				socket.on('newUser', (userInfo, callback) => {
+					...do something...
+					
+					callback('pass something here' (error, success message, etc.)) - this throws whatever message/object etc back to the original emit to be handled
+				});
+				
+	- Essentially it comes down to one side throwing out some sort of data when something happens, then the other side handles it and does something with it
+
+* * * WHATS NEXT??? * * *
+
+ - weather app - add geolocation for weather app, get location from user and pass to api
+ 
+ - task app - allow users to add uploads for individual tasks
+ 
+ - chat app - let user pick from list of rooms OR type a custom name
+ 
+ OTHER COURSES:
+
+	- GRAPHQL
+	
+	- REACT (angular/vue in the future possibly)
